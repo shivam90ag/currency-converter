@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <div class="row  top-15">
+    <a class="pull-right cursor-pointer" (click)="logout()">Logout</a>
+  </div>
+  <div class="row text-center top-15">
+    <h2>Welcome Currency Convertor</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="row convertor">
+        <div class="row converted-text">
+          {{convertedValue}}
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-3">
+              <input class="form-control" placeholder="Currency" [(ngModel)]="selcetedValue">
+            </div>
+            <div class="col-md-3">
+              <select class="form-control" [(ngModel)]="selectedIndexCurrencyFrom">
+                <option *ngFor="let currency of currencyList; let i =index" [value]="i" [selected]="i==selectedIndexCurrencyFrom">{{currency.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-1">
+              To
+            </div>
+            <div class="col-md-3">
+              <select class="form-control" [(ngModel)]="selectedIndexCurrencyTo">
+                <option *ngFor="let currency of currencyList; let i =index" [value]="i" [selected]="i==selectedIndexCurrencyTo">{{currency.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-primary" (click)="convert()">Convert</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row history">
+        <div *ngIf="isLoading">Loading..</div>
+        <div *ngIf="!isLoading">
+          <span class=" font-18 font-bold">History</span>
+          <table class="table history-table">
+            <tr>
+              <th>Currency</th>
+              <th>Value</th>
+              <th>Converted Currency</th>
+              <th>Converted Value</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let query of queries;">
+              <td>{{query.from}}</td>
+              <td>{{query.value ? query.value :'-'}}</td>
+              <td>{{query.to}}</td>
+              <td>{{query.convertedvalue ? query.convertedvalue :'-'}}</td>
+              <td>{{query.querydate | date: 'dd/MM/yyyy mm:ss'}}</td>
+              <td>
+                <button type="button" class="btn btn-success" (click)="openHistoryModal(query)">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row pagination">
+        <a class="cursor-pointer" [class.disabled]="selectedPage<=1" (click)="goToPage(false)">
+          <i class="fa fa-angle-left previous-button" aria-hidden="true"></i>Previous</a>
+        <span>
+          <span>Page {{selectedPage}}</span>
+        </span>
+        <a class="cursor-pointer" [class.disabled]="queries.length<pageSize" (click)="goToPage(true)">Next
+          <i class="fa fa-angle-right next-button" aria-hidden="true"></i>
+        </a>
+        <select (change)="pageSizeChange($event.target.value)">
+          <option *ngFor="let size of pageSizeOption" [selected]="size == pageSize">{{size}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <span class="font-18 font-bold">Current exchange rates
+          <i class="fa fa-refresh cursor-pointer" aria-hidden="true" (click)="latestCurrency()"></i>
+        </span>
+        <div *ngIf="currencyLoading">Loading..</div>
+        <table *ngIf="!currencyLoading" class="table currency-table">
+          <tr>
+            <th>Currency</th>
+            <th>Value (base USD)</th>
+          </tr>
+          <tr *ngFor="let currency of currencyList;">
+            <td>{{currency?.name}}</td>
+            <td>{{currency?.value}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade mt-150" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog" style="max-width:300px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete</h4>
+        </div>
+        <div class="modal-body">
+          Do you want delete this ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button btn-primary" data-dismiss="modal" (click)="hideDeleteModal()">No</button>
+          <button type="button" class="button btn-success" (click)="deleteHistory()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="online-user">
+  <span>
+    <i class="fa fa-user" aria-hidden="true"></i>
+  </span>
+  <span>{{appService.getOnlineUser()}}</span>
+</div>

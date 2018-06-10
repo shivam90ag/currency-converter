@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <form (submit)="submitForm()" [formGroup]="registerForm" novalidate>
+                <div class="form-content">
+                    <h1>Register</h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="email" (ngModelChange)="isUserExists = false" formControlName="email" class="sd-form-control" placeholder="Enter your email.">
+                            <div *ngIf="!registerForm.controls.email.valid && isSubmitted">INVALID EMAIL</div>
+                            <div *ngIf="isUserExists">Email already in use</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="password" formControlName="password" class="sd-form-control" placeholder="password">
+                            <div *ngIf="!registerForm.controls.password.valid && isSubmitted">PASSWORD REQUIRED</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" formControlName="firstname" class="sd-form-control" placeholder="First Name">
+                            <div *ngIf="!registerForm.controls.firstname.valid && isSubmitted">FIRST NAME REQUIRED</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" formControlName="lastname" class="sd-form-control" placeholder="Last Name">
+                            <div *ngIf="!registerForm.controls.lastname.valid && isSubmitted">LAST NAME REQUIRED</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-primary pull-right" type="submit">Register</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a class="pull-left" routerLink="/login">Already have account</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

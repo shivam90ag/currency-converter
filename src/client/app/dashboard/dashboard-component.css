@@ -1,0 +1,89 @@
+.form-content {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .form-content .sd-form-control {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+  }
+  .form-content textarea.sd-form-control {
+    max-width: 100%;
+  }
+
+  .tick text {
+    font-size: 12px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #4C5554;
+    stroke-width: 1;
+}
+
+.x.axis .tick line {
+    display: none
+}
+
+.domain {
+    display: block !important;
+    stroke: #4C5554 !important;
+    stroke-width: 2 !important;
+}
+.legend rect {
+    font-size: 12px;
+    font-family: sans-serif;
+    stroke-width: 2;
+}
+
+
+.history-table {
+    display: block;
+    width:600px;
+    height: 400px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+.currency-table {
+    display: block;
+    width: 300px;
+    height: 800px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+.convertor {
+    position: relative;
+    left:5%;
+    top:60px;
+}
+.history{
+    position: relative;
+    left:5%;
+    top:100px;
+}
+.pagination{
+    position: relative;
+    left:60%; 
+}
+.converted-text{
+    position: relative;
+    left: 5%;
+    bottom: 25px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.top-15{
+    position: relative;
+    top:15px;
+}
+.font-18{
+    font-size: 18px;
+}
+.font-bold{
+    font-weight: 800;
+}

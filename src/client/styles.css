@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+/* .tick text {
+    font-size: 12px;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #4C5554;
+    stroke-width: 1;
+}
+
+.x.axis .tick line {
+    display: none
+}
+
+.domain {
+    display: block !important;
+    stroke: #4C5554 !important;
+    stroke-width: 2 !important;
+}
+.legend rect{
+    font-size: 12px;
+    font-family: sans-serif;
+    stroke-width: 2;
+ }
+ a.disabled {
+	pointer-events: none !important;
+	cursor: default !important;
+ } */
+ .cursor-pointer{
+	cursor: pointer;
+}
+.online-user{
+    position: fixed;
+    float: right;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid white;
+    background: green;
+    color: white;
+    padding: 5px;
+}

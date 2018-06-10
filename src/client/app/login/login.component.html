@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-4">
+      <form (submit)="submitForm()" [formGroup]="loginForm" novalidate>
+        <div class="form-content">
+          <h1>Login</h1>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="email" formControlName="email" class="sd-form-control" placeholder="Email">
+              <span *ngIf="!loginForm.controls.email.valid && isSubmitted">INVALID EMAIL</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="password" formControlName="password" class="sd-form-control" placeholder="Password">
+              <span *ngIf="!loginForm.controls.password.valid && isSubmitted">PASSWORD REQUIRED</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-success pull-right" [disabled]="isSubmitting" type="submit">Login</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <a class="pull-left" routerLink="/signup">Create new account</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
