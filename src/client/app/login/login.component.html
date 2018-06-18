@@ -8,6 +8,7 @@
             <div class="col-md-6">
               <input type="email" formControlName="email" class="sd-form-control" placeholder="Email">
               <span *ngIf="!loginForm.controls.email.valid && isSubmitted">INVALID EMAIL</span>
+              <span *ngIf="loginForm.controls.email.required && isSubmitted">EMAIL REQUIRED</span>
             </div>
           </div>
           <div class="row">

@@ -42,7 +42,7 @@
 
 .history-table {
     display: block;
-    width:600px;
+    width:700px;
     height: 400px;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
@@ -67,6 +67,7 @@
 }
 .pagination{
     position: relative;
+    top:50px;
     left:60%; 
 }
 .converted-text{

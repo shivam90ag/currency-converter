@@ -79,6 +79,7 @@ export class DashboardComponent implements OnInit {
     addQuery(from,to,value,convertedvalue){
         let reqData ={from:from, to:to, value:value, convertedvalue:convertedvalue};
         this.dashboardService.addQuery(reqData,(data)=>{
+            data.currentConvertedvalue= data.convertedvalue;
             this.queries.splice(this.queries.length-1,1)
             this.queries.unshift(data);
             this.utilityService.showSuccessToastr(this.toastr, 'Success!', "History updated");
@@ -124,12 +125,26 @@ export class DashboardComponent implements OnInit {
             })
     }
 
+    updateLatestCurrencyInHistory(){
+        this.isLoading=true;
+        for(let query of this.queries){
+            let cureencyFrom = this.currencyList.find(obj => obj.name == query.from );
+            let cureencyTo = this.currencyList.find(obj => obj.name == query.to );
+            console.log("==============>>>>",cureencyFrom,cureencyTo,query)
+            if(cureencyFrom && cureencyTo){
+                query.currentConvertedvalue =query.value*(1/cureencyFrom.value)*cureencyTo.value;
+            }
+        }
+        this.isLoading=false;
+    }
+
     latestCurrency(){
         this.currencyLoading=true;
         let reqData={value:70,from:'INR', to:'USD'};
         this.dashboardService.latestCurrency(reqData, (data)=>{
             this.currencyList = this.getCurrencyArray(data.rates);
             this.currencyLoading=false;
+            this.updateLatestCurrencyInHistory();
         },(err)=>{
             this.currencyLoading=false;
         })

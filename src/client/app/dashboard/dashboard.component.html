@@ -30,7 +30,7 @@
               </select>
             </div>
             <div class="col-md-2">
-              <button type="button" class="btn btn-primary" (click)="convert()">Convert</button>
+              <button type="button" class="btn btn-primary" (click)="convert()" [disabled]="!selcetedValue" >Convert</button>
             </div>
           </div>
         </div>
@@ -45,6 +45,7 @@
               <th>Value</th>
               <th>Converted Currency</th>
               <th>Converted Value</th>
+              <th>Current Converted Value</th>
               <th>Date</th>
               <th></th>
             </tr>
@@ -53,7 +54,8 @@
               <td>{{query.value ? query.value :'-'}}</td>
               <td>{{query.to}}</td>
               <td>{{query.convertedvalue ? query.convertedvalue :'-'}}</td>
-              <td>{{query.querydate | date: 'dd/MM/yyyy mm:ss'}}</td>
+              <td>{{query.currentConvertedvalue ? query.currentConvertedvalue :'-'}}</td>
+              <td>{{query.querydate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
               <td>
                 <button type="button" class="btn btn-success" (click)="openHistoryModal(query)">Delete</button>
               </td>
@@ -86,7 +88,13 @@
             <th>Currency</th>
             <th>Value (base USD)</th>
           </tr>
-          <tr *ngFor="let currency of currencyList;">
+          <tr>
+            <input placeholder="Search by Name" [(ngModel)]="nameSearchText">
+            <input placeholder="Search by Value" [(ngModel)]="valueSearchText">
+          </tr>
+          <tr *ngFor="let currency of currencyList | search : 
+                  'name':nameSearchText :
+                  'value': valueSearchText;">
             <td>{{currency?.name}}</td>
             <td>{{currency?.value}}</td>
           </tr>

@@ -8,6 +8,7 @@
                         <div class="col-md-6">
                             <input type="email" (ngModelChange)="isUserExists = false" formControlName="email" class="sd-form-control" placeholder="Enter your email.">
                             <div *ngIf="!registerForm.controls.email.valid && isSubmitted">INVALID EMAIL</div>
+                            <div *ngIf="registerForm.controls.email.valid && isSubmitted">REQUIRED EMAIL</div>
                             <div *ngIf="isUserExists">Email already in use</div>
                         </div>
                     </div>
